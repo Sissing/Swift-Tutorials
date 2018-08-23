@@ -19,8 +19,12 @@ final class ViewController: UIViewController {
 
 	private var activatedButtons = [UIButton]()
 	private var solutions = [String]()
-	private var score = 0
 	private var level = 1
+	private var score = 0 {
+		didSet {
+			scoreLabel.text = "Score: \(score)"
+		}
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -63,13 +67,50 @@ final class ViewController: UIViewController {
 		}
 	}
 
+	private func levelUp(action: UIAlertAction) {
+		self.level += 1
+		self.solutions.removeAll(keepingCapacity: true)
+
+		self.loadLevel()
+
+		for button in self.letterButtons {
+			button.isEnabled = true
+		}
+	}
+
 	@IBAction private func submitTapped(_ sender: Any) {
+		if let solutionPosition = self.solutions.index(of: self.currentAnswerInput.text!) {
+			self.activatedButtons.removeAll()
+
+			var splitAnswers = self.answersLabel.text!.components(separatedBy: "\n")
+			splitAnswers[solutionPosition] = self.currentAnswerInput.text!
+			self.answersLabel.text = splitAnswers.joined(separator: "\n")
+
+			self.currentAnswerInput.text = ""
+			self.score += 1
+
+			if self.score % 7 == 0 {
+				let alertController = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
+				alertController.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
+				present(alertController, animated: true)
+			}
+		}
 	}
 
 	@IBAction private func clearTapped(_ sender: Any) {
+		self.currentAnswerInput.text = ""
+
+		for button in self.activatedButtons {
+			button.isEnabled = true
+		}
+
+		self.activatedButtons.removeAll()
 	}
 
-	@IBAction private func letterTapped(_ sender: Any) {
+	@IBAction private func letterTapped(_ sender: UIButton) {
+		self.currentAnswerInput.text = self.currentAnswerInput.text! + sender.titleLabel!.text!
+		self.activatedButtons.append(sender)
+		sender.isEnabled = false
 	}
 
 }
