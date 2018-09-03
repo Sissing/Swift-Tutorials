@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import Photos
 
 final class ViewController: UICollectionViewController {
 
 	private var people = [Person]()
+	private let picker = UIImagePickerController()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		self.picker.delegate = self
+		self.picker.allowsEditing = true
 	}
 
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,11 +51,26 @@ final class ViewController: UICollectionViewController {
 
 		self.present(alertController, animated: true)
 	}
+
+	private func openPhotoLibrary() {
+		switch PHPhotoLibrary.authorizationStatus() {
+		case .notDetermined:
+			PHPhotoLibrary.requestAuthorization { status in
+				if status == .authorized {
+					self.present(self.picker, animated: true)
+				}
+			}
+		case .restricted, .denied:
+			let alert = UIAlertController(title: "Error", message: "We don't have permission to open your photos.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+			self.present(alert, animated: true)
+		case .authorized:
+			self.present(self.picker, animated: true)
+		}
+	}
+
 	@IBAction func userDidTapNewPerson(_ sender: Any) {
-		let picker = UIImagePickerController()
-		picker.allowsEditing = true
-		picker.delegate = self
-		self.present(picker, animated: true)
+		self.openPhotoLibrary()
 	}
 }
 
