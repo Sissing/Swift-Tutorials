@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController {
+final class ViewController: UICollectionViewController {
 
 	private var people = [Person]()
 
@@ -25,7 +25,7 @@ class ViewController: UICollectionViewController {
 		let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "Person", for: indexPath) as! PersonCell
 
 		let person = self.people[indexPath.item]
-		cell.nameLabel.text = person.name
+		cell.nameLabel.text = person.name ?? "Unknown"
 
 		if let path = self.getDocumentsDirectory()?.appendingPathComponent(person.image) {
 			cell.imageView.image = UIImage(contentsOfFile: path.path)
@@ -34,6 +34,19 @@ class ViewController: UICollectionViewController {
 		return cell
 	}
 
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+		let alertController = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
+		alertController.addTextField()
+		alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		alertController.addAction(UIAlertAction(title: "OK", style: .default) { [unowned self, alertController] _ in
+			self.people[indexPath.item].name = alertController.textFields?.first?.text
+
+			self.collectionView.reloadData()
+		})
+
+		self.present(alertController, animated: true)
+	}
 	@IBAction func userDidTapNewPerson(_ sender: Any) {
 		let picker = UIImagePickerController()
 		picker.allowsEditing = true
