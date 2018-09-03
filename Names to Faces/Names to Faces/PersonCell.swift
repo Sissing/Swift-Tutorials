@@ -10,7 +10,16 @@ import UIKit
 
 class PersonCell: UICollectionViewCell {
 
-	@IBOutlet private var imageView: UIImageView!
-	@IBOutlet private var nameLabel: UILabel!
+	@IBOutlet private(set) var imageView: UIImageView!
+	@IBOutlet private(set) var nameLabel: UILabel!
+
+	override func awakeFromNib() {
+		super.awakeFromNib()
+
+		self.imageView.layer.borderColor = UIColor.white.withAlphaComponent(0.3).cgColor
+		self.imageView.layer.borderWidth = 2.0
+		self.imageView.layer.cornerRadius = 3.0
+		self.layer.cornerRadius = 7.0
+	}
 
 }
