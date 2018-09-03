@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sVz-7f-d4L">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="6G6-Ai-Bj6">
+            <objects>
+                <collectionViewController id="3iA-CD-ohG" customClass="ViewController" customModule="Names_to_Faces" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="QSn-At-z1e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OuI-Qb-KAe">
+                            <size key="itemSize" width="140" height="180"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Person" id="A2o-k2-Yjf" customClass="PersonCell" customModule="Names_to_Faces" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="140" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rCs-8X-7JI">
+                                            <rect key="frame" x="10" y="10" width="120" height="120"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="120" id="NUP-7C-Atl"/>
+                                                <constraint firstAttribute="width" constant="120" id="zWN-p5-38T"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnm-54-5vb">
+                                            <rect key="frame" x="10" y="130" width="120" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="dqc-OU-qbh"/>
+                                                <constraint firstAttribute="width" constant="120" id="tCo-Sp-oaK"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Cnm-54-5vb" secondAttribute="bottom" constant="10" id="8P9-Ev-Zmb"/>
+                                    <constraint firstItem="rCs-8X-7JI" firstAttribute="leading" secondItem="A2o-k2-Yjf" secondAttribute="leading" constant="10" id="LZq-ta-KsJ"/>
+                                    <constraint firstItem="Cnm-54-5vb" firstAttribute="leading" secondItem="A2o-k2-Yjf" secondAttribute="leading" constant="10" id="NHp-no-mdL"/>
+                                    <constraint firstItem="Cnm-54-5vb" firstAttribute="top" secondItem="rCs-8X-7JI" secondAttribute="bottom" id="itz-c5-aeK"/>
+                                    <constraint firstItem="rCs-8X-7JI" firstAttribute="top" secondItem="A2o-k2-Yjf" secondAttribute="top" constant="10" id="xEm-F7-iBf"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="rCs-8X-7JI" id="gyH-6o-D2h"/>
+                                    <outlet property="nameLabel" destination="Cnm-54-5vb" id="f48-ga-fVp"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="3iA-CD-ohG" id="xB3-tb-tAe"/>
+                            <outlet property="delegate" destination="3iA-CD-ohG" id="Ik5-VX-Znh"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="Wnl-Me-hzi"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2vu-eW-5zf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944.79999999999995" y="68.815592203898049"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pzG-FO-lE4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sVz-7f-d4L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PKK-UE-YUm">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3iA-CD-ohG" kind="relationship" relationship="rootViewController" id="gkj-cd-tnu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gqt-kd-Whm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5.5999999999999996" y="68.815592203898049"/>
+        </scene>
+    </scenes>
+</document>
