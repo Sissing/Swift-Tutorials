@@ -17,6 +17,11 @@ class GameScene: SKScene {
 		self.addChild(background)
 		self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 
+		self.makeSlot(at: CGPoint(x: 128.0, y: 0.0), isGood: true)
+		self.makeSlot(at: CGPoint(x: 384.0, y: 0.0), isGood: false)
+		self.makeSlot(at: CGPoint(x: 640.0, y: 0.0), isGood: true)
+		self.makeSlot(at: CGPoint(x: 896.0, y: 0.0), isGood: false)
+
 		self.makeBouncer(at: CGPoint(x: 0.0, y: 0.0))
 		self.makeBouncer(at: CGPoint(x: 256.0, y: 0.0))
 		self.makeBouncer(at: CGPoint(x: 512.0, y: 0.0))
@@ -31,7 +36,7 @@ class GameScene: SKScene {
 			ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
 			ball.physicsBody?.restitution = 0.4
 			ball.position = location
-			addChild(ball)
+			self.addChild(ball)
 		}
 	}
 
@@ -40,6 +45,19 @@ class GameScene: SKScene {
 		bouncer.position = position
 		bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
 		bouncer.physicsBody?.isDynamic = false
-		addChild(bouncer)
+		self.addChild(bouncer)
+	}
+
+	private func makeSlot(at position: CGPoint, isGood: Bool) {
+		let slotBase = SKSpriteNode(imageNamed: isGood ? "slotBaseGood" : "slotBaseBad")
+		let slotGlow = SKSpriteNode(imageNamed: isGood ? "slotGlowGood" : "slotGlowBad")
+		slotBase.position = position
+		slotGlow.position = position
+		self.addChild(slotBase)
+		self.addChild(slotGlow)
+
+		let spin = SKAction.rotate(byAngle: .pi, duration: 10.0)
+		let spinForever = SKAction.repeatForever(spin)
+		slotGlow.run(spinForever)
 	}
 }
