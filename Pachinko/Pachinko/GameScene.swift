@@ -9,6 +9,14 @@
 import SpriteKit
 
 class GameScene: SKScene {
+
+	private var scoreLabel: SKLabelNode!
+	private var score = 0 {
+		didSet {
+			self.scoreLabel.text = "Score: \(score)"
+		}
+	}
+
 	override func didMove(to view: SKView) {
 		let background = SKSpriteNode(imageNamed: "background.jpg")
 		background.position = CGPoint(x: 512.0, y: 384.0)
@@ -28,6 +36,12 @@ class GameScene: SKScene {
 		self.makeBouncer(at: CGPoint(x: 512.0, y: 0.0))
 		self.makeBouncer(at: CGPoint(x: 768.0, y: 0.0))
 		self.makeBouncer(at: CGPoint(x: 1024.0, y: 0.0))
+
+		self.scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+		self.scoreLabel.text = "Score: 0"
+		self.scoreLabel.horizontalAlignmentMode = .right
+		self.scoreLabel.position = CGPoint(x: 980.0, y: 700.0)
+		self.addChild(self.scoreLabel)
 	}
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,8 +98,10 @@ extension GameScene: SKPhysicsContactDelegate {
 		switch object.name {
 		case .some("good"):
 			self.destroy(ball: ball)
+			self.score += 1
 		case .some("bad"):
 			self.destroy(ball: ball)
+			self.score -= 1
 		default:
 			break
 		}
