@@ -7,13 +7,22 @@
 //
 
 import SpriteKit
+import GameplayKit
 
 class GameScene: SKScene {
 
 	private var scoreLabel: SKLabelNode!
+	private var editLabel: SKLabelNode!
+
 	private var score = 0 {
 		didSet {
 			self.scoreLabel.text = "Score: \(score)"
+		}
+	}
+
+	private var editingMode: Bool = false {
+		didSet {
+			self.editLabel.text = self.editingMode ? "Done" : "Edit"
 		}
 	}
 
@@ -42,18 +51,38 @@ class GameScene: SKScene {
 		self.scoreLabel.horizontalAlignmentMode = .right
 		self.scoreLabel.position = CGPoint(x: 980.0, y: 700.0)
 		self.addChild(self.scoreLabel)
+
+		self.editLabel = SKLabelNode(fontNamed: "Chalkduster")
+		self.editLabel.text = "Edit"
+		self.editLabel.position = CGPoint(x: 80.0, y: 700.0)
+		self.addChild(self.editLabel)
 	}
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if let touch = touches.first {
 			let location = touch.location(in: self)
-			let ball = SKSpriteNode(imageNamed: "ballRed")
-			ball.name = "ball"
-			ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-			ball.physicsBody?.contactTestBitMask = ball.physicsBody!.collisionBitMask
-			ball.physicsBody?.restitution = 0.4
-			ball.position = location
-			self.addChild(ball)
+			let objects = nodes(at: location)
+			if objects.contains(self.editLabel) {
+				self.editingMode = !editingMode
+			} else {
+				if self.editingMode {
+					let size = CGSize(width: GKRandomDistribution(lowestValue: 16, highestValue: 128).nextInt(), height: 16)
+					let box = SKSpriteNode(color: RandomColor(), size: size)
+					box.zRotation = RandomCGFloat(min: 0.0, max: 3.0)
+					box.position = location
+					box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
+					box.physicsBody?.isDynamic = false
+					self.addChild(box)
+				} else {
+					let ball = SKSpriteNode(imageNamed: "ballRed")
+					ball.name = "ball"
+					ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+					ball.physicsBody?.contactTestBitMask = ball.physicsBody!.collisionBitMask
+					ball.physicsBody?.restitution = 0.4
+					ball.position = location
+					self.addChild(ball)
+				}
+			}
 		}
 	}
 

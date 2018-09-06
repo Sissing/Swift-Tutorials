@@ -43,6 +43,7 @@
 		4589C705213EB2630099D8DF /* slotBaseGood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589C6E9213EB2630099D8DF /* slotBaseGood@2x.png */; };
 		4589C706213EB2630099D8DF /* slotBaseBad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589C6EA213EB2630099D8DF /* slotBaseBad@2x.png */; };
 		4589C707213EB2630099D8DF /* ballBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4589C6EB213EB2630099D8DF /* ballBlue.png */; };
+		45C161542141980400DE8D7A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C161532141980400DE8D7A /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		4589C6E9213EB2630099D8DF /* slotBaseGood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotBaseGood@2x.png"; sourceTree = "<group>"; };
 		4589C6EA213EB2630099D8DF /* slotBaseBad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotBaseBad@2x.png"; sourceTree = "<group>"; };
 		4589C6EB213EB2630099D8DF /* ballBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ballBlue.png; sourceTree = "<group>"; };
+		45C161532141980400DE8D7A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				4589C648213EA0FE0099D8DF /* Actions.sks */,
 				4589C64A213EA0FE0099D8DF /* GameScene.swift */,
 				4589C64C213EA0FE0099D8DF /* GameViewController.swift */,
+				45C161532141980400DE8D7A /* Helper.swift */,
 				4589C64E213EA0FE0099D8DF /* Main.storyboard */,
 				4589C651213EA0FF0099D8DF /* Assets.xcassets */,
 				4589C653213EA0FF0099D8DF /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				4589C64B213EA0FE0099D8DF /* GameScene.swift in Sources */,
 				4589C64D213EA0FE0099D8DF /* GameViewController.swift in Sources */,
 				4589C645213EA0FE0099D8DF /* AppDelegate.swift in Sources */,
+				45C161542141980400DE8D7A /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
