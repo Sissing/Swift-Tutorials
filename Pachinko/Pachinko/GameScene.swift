@@ -137,6 +137,11 @@ extension GameScene: SKPhysicsContactDelegate {
 	}
 
 	private func destroy(ball: SKNode) {
+		if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+			fireParticles.position = ball.position
+			self.addChild(fireParticles)
+		}
+
 		ball.removeFromParent()
 	}
 }
