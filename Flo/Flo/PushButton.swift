@@ -8,8 +8,10 @@
 
 import UIKit
 
-@IBDesignable
-class PushButton: UIButton {
+@IBDesignable class PushButton: UIButton {
+
+	@IBInspectable var fillColor: UIColor = UIColor.green
+	@IBInspectable var isAddButton: Bool = true
 
 	private struct Constants {
 		static let plusLineWidth: CGFloat = 3.0
@@ -27,7 +29,7 @@ class PushButton: UIButton {
 
 	override func draw(_ rect: CGRect) {
 		let path = UIBezierPath(ovalIn: rect)
-		UIColor.blue.setFill()
+		self.fillColor.setFill()
 		path.fill()
 
 		let plusWidth: CGFloat = min(self.bounds.width, self.bounds.height) * Constants.plusButtonScale
@@ -48,16 +50,18 @@ class PushButton: UIButton {
 			y: self.halfHeight + Constants.halfPointShift
 		))
 
+		if self.isAddButton {
 		// vertical line
-		plusPath.move(to: CGPoint(
-			x: self.halfWidth + Constants.halfPointShift,
-			y: self.halfHeight - halfPlusWidth + Constants.halfPointShift
-		))
+			plusPath.move(to: CGPoint(
+				x: self.halfWidth + Constants.halfPointShift,
+				y: self.halfHeight - halfPlusWidth + Constants.halfPointShift
+			))
 
-		plusPath.addLine(to: CGPoint(
-			x: self.halfWidth + Constants.halfPointShift,
-			y: self.halfHeight + halfPlusWidth + Constants.halfPointShift
-		))
+			plusPath.addLine(to: CGPoint(
+				x: self.halfWidth + Constants.halfPointShift,
+				y: self.halfHeight + halfPlusWidth + Constants.halfPointShift
+			))
+		}
 
 		UIColor.white.setStroke()
 
