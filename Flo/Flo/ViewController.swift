@@ -9,12 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController {
+	@IBOutlet private var counterView: CounterView!
+	@IBOutlet private var counterLabel: UILabel!
+
+	@IBAction func pushButtonPressed(_ button: PushButton) {
+		if button.isAddButton {
+			self.counterView.counter += 1
+		} else if self.counterView.counter > 0 {
+			self.counterView.counter -= 1
+		}
+		self.counterLabel.text = String(self.counterView.counter)
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
-	}
 
+		self.counterLabel.text = String(self.counterView.counter)
+	}
 
 }
 

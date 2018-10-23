@@ -29,6 +29,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isAddButton" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pushButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d6Y-Od-afI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1V9-mq-mCY" customClass="PushButton" customModule="Flo" customModuleProvider="target">
                                 <rect key="frame" x="162.5" y="513.5" width="50" height="50"/>
@@ -42,17 +45,55 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isAddButton" value="NO"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pushButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JKM-ad-56p"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukl-JI-73I" customClass="CounterView" customModule="Flo" customModuleProvider="target">
+                                <rect key="frame" x="72.5" y="123.5" width="230" height="230"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vW-eP-ymr">
+                                        <rect key="frame" x="104" y="93.5" width="22" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1vW-eP-ymr" firstAttribute="centerX" secondItem="Ukl-JI-73I" secondAttribute="centerX" id="aVT-iv-Md1"/>
+                                    <constraint firstItem="1vW-eP-ymr" firstAttribute="centerY" secondItem="Ukl-JI-73I" secondAttribute="centerY" id="iSR-X1-NVW"/>
+                                    <constraint firstAttribute="width" constant="230" id="o21-65-G9Z"/>
+                                    <constraint firstAttribute="height" constant="230" id="oYb-Sn-6od"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="counterColor">
+                                        <color key="value" red="0.3411764705882353" green="0.85490196078431369" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="outlineColor">
+                                        <color key="value" red="0.23553795662100457" green="0.6712591072387859" blue="0.60301409733413913" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="counter">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1V9-mq-mCY" firstAttribute="top" secondItem="kFz-VB-MXA" secondAttribute="bottom" constant="20" id="0qN-mZ-jyi"/>
+                            <constraint firstItem="kFz-VB-MXA" firstAttribute="top" secondItem="Ukl-JI-73I" secondAttribute="bottom" constant="40" id="aY1-ro-Gn3"/>
                             <constraint firstItem="kFz-VB-MXA" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="100" id="iQ2-ra-1iG"/>
+                            <constraint firstItem="Ukl-JI-73I" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="m6i-9J-ca9"/>
                             <constraint firstItem="kFz-VB-MXA" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xry-7c-zYt"/>
                             <constraint firstItem="1V9-mq-mCY" firstAttribute="centerX" secondItem="kFz-VB-MXA" secondAttribute="centerX" id="zVW-gg-5rd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="counterLabel" destination="1vW-eP-ymr" id="7f4-ZQ-x87"/>
+                        <outlet property="counterView" destination="Ukl-JI-73I" id="V0T-ba-wwq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

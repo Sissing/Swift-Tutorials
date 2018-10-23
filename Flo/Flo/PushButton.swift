@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable class PushButton: UIButton {
 
-	@IBInspectable var fillColor: UIColor = UIColor.green
+	@IBInspectable var fillColor: UIColor = .green
 	@IBInspectable var isAddButton: Bool = true
 
 	private struct Constants {
