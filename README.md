@@ -1,6 +1,9 @@
 # Swift-Tutorials
 All kinds of projects to improve my knowledge
 
+## Pachinko
+
+[![Pachinko](Assets/3-pachinko.jpeg)](/Pachinko)
 
 ## Names to Faces
 
