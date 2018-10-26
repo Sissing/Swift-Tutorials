@@ -66,6 +66,35 @@ import UIKit
 		self.outlineColor.setStroke()
 		outlinePath.lineWidth = Constants.lineWidth
 		outlinePath.stroke()
+
+		self.drawCounterViewMarkers(rect: rect, arcLengthPerGlass: arcLengthPerGlass, startAngle: startAngle)
+	}
+
+	private func drawCounterViewMarkers(rect: CGRect, arcLengthPerGlass: CGFloat, startAngle: CGFloat) {
+		let context = UIGraphicsGetCurrentContext()!
+		context.saveGState()
+		self.outlineColor.setFill()
+
+		let markerWidth: CGFloat = 5.0
+		let markerSize: CGFloat = 10.0
+
+		let markerPath = UIBezierPath(rect: CGRect(x: -markerWidth / 2, y: 0, width: markerWidth, height: markerSize))
+
+		context.translateBy(x: rect.width / 2, y: rect.height / 2)
+
+		for i in 1...Constants.numberOfGlasses {
+			context.saveGState()
+
+			let angle = arcLengthPerGlass * CGFloat(i) + startAngle - .pi / 2
+
+			context.rotate(by: angle)
+			context.translateBy(x: 0, y: rect.height / 2 - markerSize)
+
+			markerPath.fill()
+			context.restoreGState()
+		}
+
+		context.restoreGState()
 	}
 
 }
