@@ -22,11 +22,15 @@ import UIKit
 		static let circleDiameter: CGFloat = 5.0
 	}
 
-	private var graphPoints = [4, 2, 6, 4, 5, 8, 3]
 	private var drawRect = CGRect.zero
+	private var graphHeight: CGFloat = 0
+
+	var graphPoints = [4, 2, 6, 4, 5, 8, 3]
 
 	override func draw(_ rect: CGRect) {
 		self.drawRect = rect
+		self.graphHeight = rect.height - Constants.topBorder - Constants.bottomBorder
+
 		let path = UIBezierPath(roundedRect: rect, byRoundingCorners: .allCorners, cornerRadii: Constants.cornerRadiusSize)
 		path.addClip()
 
@@ -55,6 +59,8 @@ import UIKit
 		graphPath.stroke()
 
 		self.drawColumnPointDots()
+
+		self.drawHorizontalLines()
 	}
 
 	private func backgroundGradient() -> CGGradient {
@@ -74,9 +80,8 @@ import UIKit
 	}
 
 	private func columnYPoint(graphPoint: Int) -> CGFloat {
-		let graphHeight = self.drawRect.height - Constants.topBorder - Constants.bottomBorder
-		let y = CGFloat(graphPoint) / CGFloat(self.graphPoints.max()!) * graphHeight
-		return graphHeight + Constants.topBorder - y
+		let y = CGFloat(graphPoint) / CGFloat(self.graphPoints.max()!) * self.graphHeight
+		return self.graphHeight + Constants.topBorder - y
 	}
 
 	private func setGraphPoints(graphPath: UIBezierPath) {
@@ -106,6 +111,24 @@ import UIKit
 			let circle = UIBezierPath(ovalIn: CGRect(origin: point, size: CGSize(width: Constants.circleDiameter, height: Constants.circleDiameter)))
 			circle.fill()
 		}
+	}
+
+	private func drawHorizontalLines() {
+		let linePath = UIBezierPath()
+
+		linePath.move(to: CGPoint(x: Constants.margin, y: Constants.topBorder))
+		linePath.addLine(to: CGPoint(x: self.drawRect.width - Constants.margin, y: Constants.topBorder))
+
+		linePath.move(to: CGPoint(x: Constants.margin, y: self.graphHeight / 2 + Constants.topBorder))
+		linePath.addLine(to: CGPoint(x: self.drawRect.width - Constants.margin, y: self.graphHeight / 2 + Constants.topBorder))
+
+		linePath.move(to: CGPoint(x: Constants.margin, y: self.drawRect.height - Constants.bottomBorder))
+		linePath.addLine(to: CGPoint(x: self.drawRect.width - Constants.margin, y: self.drawRect.height - Constants.bottomBorder))
+
+		UIColor.white.withAlphaComponent(Constants.colorAlpha).setStroke()
+
+		linePath.lineWidth = 1.0
+		linePath.stroke()
 	}
 
 }
