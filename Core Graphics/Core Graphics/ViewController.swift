@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
 	@IBOutlet private var imageView: UIImageView!
 
@@ -79,6 +79,32 @@ class ViewController: UIViewController {
 		self.imageView.image = image
 	}
 
+	private func drawLines() {
+		let image = self.renderer.image { context in
+			let size = CGSize(width: context.currentImage.size.width / 2, height: context.currentImage.size.height / 2)
+			var first = true
+			var length: CGFloat = size.width
+
+			context.cgContext.translateBy(x: size.width, y: size.height)
+
+			for _ in 0..<Int(size.width) {
+				context.cgContext.rotate(by: CGFloat.pi / 2)
+				if first {
+					context.cgContext.move(to: CGPoint(x: length, y: 50))
+					first = false
+				} else {
+					context.cgContext.addLine(to: CGPoint(x: length, y: 50))
+				}
+
+				length *= 0.99
+			}
+
+			context.cgContext.setStrokeColor(UIColor.black.cgColor)
+			context.cgContext.strokePath()
+		}
+		self.imageView.image = image
+	}
+
 	@IBAction func redrawTapped(_ sender: Any) {
 		self.currentDrawType += 1
 
@@ -95,6 +121,8 @@ class ViewController: UIViewController {
 			self.drawCheckerboard()
 		case 3:
 			self.drawRotatedSquares()
+		case 4:
+			self.drawLines()
 		default:
 			break
 		}
