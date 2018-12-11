@@ -46,9 +46,24 @@ class ViewController: UIViewController {
 		self.imageView.image = image
 	}
 
+	private func drawCheckerboard() {
+		let image = self.renderer.image { context in
+			context.cgContext.setFillColor(UIColor.black.cgColor)
+
+			for row in 0..<8 {
+				for col in 0..<8 {
+					if (row + col) % 2 == 0 {
+						context.cgContext.fill(CGRect(x: col * 64, y: row * 64, width: 64, height: 64))
+					}
+				}
+			}
+		}
+		self.imageView.image = image
+	}
+
 	@IBAction func redrawTapped(_ sender: Any) {
 		self.currentDrawType += 1
-
+		
 		if self.currentDrawType > 5 {
 			self.currentDrawType = 0
 		}
@@ -58,6 +73,8 @@ class ViewController: UIViewController {
 			self.drawRectangle()
 		case 1:
 			self.drawCircle()
+		case 2:
+			self.drawCheckerboard()
 		default:
 			break
 		}
