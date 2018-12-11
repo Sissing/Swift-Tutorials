@@ -61,9 +61,27 @@ class ViewController: UIViewController {
 		self.imageView.image = image
 	}
 
+	private func drawRotatedSquares() {
+		let image = self.renderer.image { context in
+			context.cgContext.translateBy(x: context.currentImage.size.width / 2, y: context.currentImage.size.height / 2)
+			let rotations = 16
+			let amount = Double.pi / Double(rotations)
+
+			for _ in 0..<rotations {
+				context.cgContext.rotate(by: CGFloat(amount))
+				let size = CGSize(width: 256, height: 256)
+				let origin = CGPoint(x: -(size.width / 2), y: -(size.height / 2))
+				context.cgContext.addRect(CGRect(origin: origin, size: size))
+				context.cgContext.setStrokeColor(UIColor.black.cgColor)
+				context.cgContext.strokePath()
+			}
+		}
+		self.imageView.image = image
+	}
+
 	@IBAction func redrawTapped(_ sender: Any) {
 		self.currentDrawType += 1
-		
+
 		if self.currentDrawType > 5 {
 			self.currentDrawType = 0
 		}
@@ -75,6 +93,8 @@ class ViewController: UIViewController {
 			self.drawCircle()
 		case 2:
 			self.drawCheckerboard()
+		case 3:
+			self.drawRotatedSquares()
 		default:
 			break
 		}
