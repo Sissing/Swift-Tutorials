@@ -8,6 +8,11 @@
 
 import UIKit
 
+private enum SymbolObject {
+	case rectangle
+	case ellipse
+}
+
 final class ViewController: UIViewController {
 
 	@IBOutlet private var imageView: UIImageView!
@@ -19,28 +24,21 @@ final class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.drawRectangle()
+		self.drawObject(.rectangle)
 	}
 
-	private func drawRectangle() {
+	private func drawObject(_ object: SymbolObject) {
 		let image = self.renderer.image { context in
 			let rectangle = self.rectangle
 			context.cgContext.setFillColor(UIColor.red.cgColor)
 			context.cgContext.setStrokeColor(UIColor.black.cgColor)
 			context.cgContext.setLineWidth(10)
-			context.cgContext.addRect(rectangle)
-			context.cgContext.drawPath(using: .fillStroke)
-		}
-		self.imageView.image = image
-	}
-
-	private func drawCircle() {
-		let image = self.renderer.image { context in
-			let rectangle = self.rectangle
-			context.cgContext.setFillColor(UIColor.red.cgColor)
-			context.cgContext.setStrokeColor(UIColor.black.cgColor)
-			context.cgContext.setLineWidth(10)
-			context.cgContext.addEllipse(in: rectangle)
+			switch object {
+			case .rectangle:
+				context.cgContext.addRect(rectangle)
+			case .ellipse:
+				context.cgContext.addEllipse(in: rectangle)
+			}
 			context.cgContext.drawPath(using: .fillStroke)
 		}
 		self.imageView.image = image
@@ -130,9 +128,9 @@ final class ViewController: UIViewController {
 
 		switch currentDrawType {
 		case 0:
-			self.drawRectangle()
+			self.drawObject(.rectangle)
 		case 1:
-			self.drawCircle()
+			self.drawObject(.ellipse)
 		case 2:
 			self.drawCheckerboard()
 		case 3:
