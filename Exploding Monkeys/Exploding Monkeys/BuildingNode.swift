@@ -13,7 +13,7 @@ class BuildingNode: SKSpriteNode {
 
 	private var currentImage: UIImage!
 
-	private func setup() {
+	func setup() {
 		self.name = "building"
 		self.currentImage = self.drawBuilding(size: self.size)
 		self.texture = SKTexture(image: currentImage)
