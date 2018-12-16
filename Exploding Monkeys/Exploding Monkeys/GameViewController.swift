@@ -12,6 +12,8 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+	var currentGame: GameScene!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -23,6 +25,8 @@ class GameViewController: UIViewController {
 
 				// Present the scene
 				view.presentScene(scene)
+				self.currentGame = scene as? GameScene
+				self.currentGame.viewcontroller = self
 			}
 
 			view.ignoresSiblingOrder = true
