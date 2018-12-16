@@ -16,6 +16,7 @@
 		45C2F70221C2F4880084A5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45C2F70121C2F4880084A5E8 /* Assets.xcassets */; };
 		45C2F70521C2F4880084A5E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C2F70321C2F4880084A5E8 /* LaunchScreen.storyboard */; };
 		45C2F70D21C2F6CA0084A5E8 /* BuildingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C2F70C21C2F6CA0084A5E8 /* BuildingNode.swift */; };
+		45C6327E21C6F89A0006A01C /* Assets.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 45C6327D21C6F89A0006A01C /* Assets.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,9 @@
 		45C2F70421C2F4880084A5E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45C2F70621C2F4880084A5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45C2F70C21C2F6CA0084A5E8 /* BuildingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingNode.swift; sourceTree = "<group>"; };
+		45C6327D21C6F89A0006A01C /* Assets.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Assets.atlas; sourceTree = "<group>"; };
+		45C6327F21C6F8BC0006A01C /* hitBuilding.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitBuilding.sks; sourceTree = "<group>"; };
+		45C6328021C6F8BD0006A01C /* hitPlayer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitPlayer.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +69,14 @@
 				45C2F6F421C2F4870084A5E8 /* AppDelegate.swift */,
 				45C2F6F621C2F4870084A5E8 /* GameScene.sks */,
 				45C2F6F821C2F4870084A5E8 /* Actions.sks */,
+				45C6327F21C6F8BC0006A01C /* hitBuilding.sks */,
+				45C6328021C6F8BD0006A01C /* hitPlayer.sks */,
 				45C2F70C21C2F6CA0084A5E8 /* BuildingNode.swift */,
 				45C2F6FA21C2F4870084A5E8 /* GameScene.swift */,
 				45C2F6FC21C2F4870084A5E8 /* GameViewController.swift */,
 				45C2F6FE21C2F4870084A5E8 /* Main.storyboard */,
 				45C2F70121C2F4880084A5E8 /* Assets.xcassets */,
+				45C6327D21C6F89A0006A01C /* Assets.atlas */,
 				45C2F70321C2F4880084A5E8 /* LaunchScreen.storyboard */,
 				45C2F70621C2F4880084A5E8 /* Info.plist */,
 			);
@@ -138,6 +145,7 @@
 				45C2F6F721C2F4870084A5E8 /* GameScene.sks in Resources */,
 				45C2F70221C2F4880084A5E8 /* Assets.xcassets in Resources */,
 				45C2F70521C2F4880084A5E8 /* LaunchScreen.storyboard in Resources */,
+				45C6327E21C6F89A0006A01C /* Assets.atlas in Resources */,
 				45C2F6F921C2F4870084A5E8 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
