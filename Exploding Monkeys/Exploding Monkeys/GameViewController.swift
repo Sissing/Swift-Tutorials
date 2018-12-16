@@ -24,6 +24,9 @@ class GameViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		self.angleChanged(self.angleSlider)
+		self.velocityChanged(self.velocitySlider)
+
 		if let view = self.view as! SKView? {
 			// Load the SKScene from 'GameScene.sks'
 			if let scene = SKScene(fileNamed: "GameScene") {
@@ -44,12 +47,31 @@ class GameViewController: UIViewController {
 	}
 
 	@IBAction private func angleChanged(_ sender: Any) {
+		self.angleLabel.text = "Angle: \(Int(self.angleSlider.value))º"
 	}
 
 	@IBAction private func velocityChanged(_ sender: Any) {
+		self.velocityLabel.text = "Velocity: \(Int(self.velocitySlider.value))"
 	}
 
 	@IBAction private func launch(_ sender: Any) {
+		self.setLayoutStyle(isHidden: true)
+
+		self.currentGame.launch(angle: Int(self.angleSlider.value), velocity: Int(self.velocitySlider.value))
+	}
+
+	private func setLayoutStyle(isHidden: Bool) {
+		self.angleSlider.isHidden = isHidden
+		self.angleLabel.isHidden = isHidden
+		self.velocitySlider.isHidden = isHidden
+		self.velocityLabel.isHidden = isHidden
+		self.launchButton.isHidden = isHidden
+	}
+
+	private func activatePlayer(number: Int) {
+		self.playerNumber.text = number == 1 ? "<<< PLAYER ONE" : "PLAYER TWO >>>"
+
+		self.setLayoutStyle(isHidden: false)
 	}
 
 	override var shouldAutorotate: Bool {
