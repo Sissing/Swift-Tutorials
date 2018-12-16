@@ -12,6 +12,13 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+	@IBOutlet private var angleSlider: UISlider!
+	@IBOutlet private var angleLabel: UILabel!
+	@IBOutlet private var velocitySlider: UISlider!
+	@IBOutlet private var velocityLabel: UILabel!
+	@IBOutlet private var launchButton: UIButton!
+	@IBOutlet private var playerNumber: UILabel!
+
 	var currentGame: GameScene!
 
 	override func viewDidLoad() {
@@ -34,6 +41,15 @@ class GameViewController: UIViewController {
 			view.showsFPS = true
 			view.showsNodeCount = true
 		}
+	}
+
+	@IBAction private func angleChanged(_ sender: Any) {
+	}
+
+	@IBAction private func velocityChanged(_ sender: Any) {
+	}
+
+	@IBAction private func launch(_ sender: Any) {
 	}
 
 	override var shouldAutorotate: Bool {
