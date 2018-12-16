@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4597495B21C717DC007BD03F /* hitPlayer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 45C6328021C6F8BD0006A01C /* hitPlayer.sks */; };
+		4597495C21C717DF007BD03F /* hitBuilding.sks in Resources */ = {isa = PBXBuildFile; fileRef = 45C6327F21C6F8BC0006A01C /* hitBuilding.sks */; };
 		45C2F6F521C2F4870084A5E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C2F6F421C2F4870084A5E8 /* AppDelegate.swift */; };
 		45C2F6F721C2F4870084A5E8 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 45C2F6F621C2F4870084A5E8 /* GameScene.sks */; };
 		45C2F6F921C2F4870084A5E8 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 45C2F6F821C2F4870084A5E8 /* Actions.sks */; };
@@ -141,6 +143,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4597495B21C717DC007BD03F /* hitPlayer.sks in Resources */,
+				4597495C21C717DF007BD03F /* hitBuilding.sks in Resources */,
 				45C2F70021C2F4870084A5E8 /* Main.storyboard in Resources */,
 				45C2F6F721C2F4870084A5E8 /* GameScene.sks in Resources */,
 				45C2F70221C2F4880084A5E8 /* Assets.xcassets in Resources */,

@@ -15,20 +15,105 @@ enum CollisionType: UInt32 {
 	case player = 4
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
 
 	var buildings = [BuildingNode]()
-	weak var viewcontroller: GameViewController!
+	weak var viewController: GameViewController!
 	var player1: SKSpriteNode!
 	var player2: SKSpriteNode!
 	var banana: SKSpriteNode!
 	var currentPlayer = 1
 
 	override func didMove(to view: SKView) {
+		self.physicsWorld.contactDelegate = self
 		self.backgroundColor = UIColor(hue: 0.669, saturation: 0.99, brightness: 0.67, alpha: 1)
 
 		self.createBuildings()
 		self.createPlayers()
+	}
+
+	func didBegin(_ contact: SKPhysicsContact) {
+		var firstBody: SKPhysicsBody
+		var secondBody: SKPhysicsBody
+
+		if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+			firstBody = contact.bodyA
+			secondBody = contact.bodyB
+		} else {
+			firstBody = contact.bodyB
+			secondBody = contact.bodyA
+		}
+
+		if let firstNode = firstBody.node, let secondNode = secondBody.node {
+			if firstNode.name == "banana" && secondNode.name == "building" {
+				self.bananaHit(building: secondNode as! BuildingNode, atPoint: contact.contactPoint)
+			}
+
+			if firstNode.name == "banana" && secondNode.name == "player1" {
+				self.destroy(player: self.player1)
+			}
+
+			if firstNode.name == "banana" && secondNode.name == "player2" {
+				self.destroy(player: self.player2)
+			}
+		}
+	}
+
+	override func update(_ currentTime: TimeInterval) {
+		if self.banana != nil, self.banana.position.y < -1000 {
+			self.banana.removeFromParent()
+			self.banana = nil
+
+			self.changePlayer()
+		}
+	}
+
+	private func destroy(player: SKSpriteNode) {
+		let explosion = SKEmitterNode(fileNamed: "hitPlayer")!
+		explosion.position = player.position
+		self.addChild(explosion)
+
+		player.removeFromParent()
+		self.banana?.removeFromParent()
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+			guard let this = self else {
+				return
+			}
+			let newGame = GameScene(size: this.size)
+			newGame.viewController = this.viewController
+			this.viewController.currentGame = newGame
+
+			this.changePlayer()
+			newGame.currentPlayer = this.currentPlayer
+			let transition = SKTransition.doorway(withDuration: 1.5)
+			this.view?.presentScene(newGame, transition: transition)
+		}
+	}
+
+	private func changePlayer() {
+		if self.currentPlayer == 1 {
+			self.currentPlayer = 2
+		} else {
+			self.currentPlayer = 1
+		}
+
+		self.viewController.activatePlayer(number: self.currentPlayer)
+	}
+
+	private func bananaHit(building: BuildingNode, atPoint contactPoint: CGPoint) {
+		let buildingLocation = convert(contactPoint, to: building)
+		building.hitAt(point: buildingLocation)
+
+		let explosion = SKEmitterNode(fileNamed: "hitBuilding")!
+		explosion.position = contactPoint
+		self.addChild(explosion)
+
+		self.banana.name = ""
+		self.banana.removeFromParent()
+		self.banana = nil
+
+		self.changePlayer()
 	}
 
 	private func createBuildings() {
@@ -79,7 +164,7 @@ class GameScene: SKScene {
 		let pause = SKAction.wait(forDuration: 0.15)
 		let sequence = SKAction.sequence([raiseArm, pause, lowerArm])
 		player.run(sequence)
-		let impulse = CGVector(dx: cos(radians), dy: sin(radians) * speed)
+		let impulse = CGVector(dx: cos(radians) * (isPlayer1 ? speed : -speed), dy: sin(radians) * speed)
 		self.banana.physicsBody?.applyImpulse(impulse)
 	}
 
@@ -106,7 +191,6 @@ class GameScene: SKScene {
 
 		let player2Building = buildings[buildings.count - 2]
 		self.player2.position = CGPoint(x: player2Building.position.x, y: player2Building.position.y + ((player2Building.size.height + self.player2.size.height) / 2))
-
 		self.addChild(self.player2)
 	}
 

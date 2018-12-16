@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
 				// Present the scene
 				view.presentScene(scene)
 				self.currentGame = scene as? GameScene
-				self.currentGame.viewcontroller = self
+				self.currentGame.viewController = self
 			}
 
 			view.ignoresSiblingOrder = true
@@ -68,7 +68,7 @@ class GameViewController: UIViewController {
 		self.launchButton.isHidden = isHidden
 	}
 
-	private func activatePlayer(number: Int) {
+	func activatePlayer(number: Int) {
 		self.playerNumber.text = number == 1 ? "<<< PLAYER ONE" : "PLAYER TWO >>>"
 
 		self.setLayoutStyle(isHidden: false)
