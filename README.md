@@ -1,5 +1,5 @@
 # Swift-Tutorials
-All kinds of projects to improve my knowledge
+All kinds of projects to improve my knowledge, click on the screenshot to go directly to the source code for the specific project.
 
 ## Exploding Monkeys
 _[Gorillas look a like game](https://en.wikipedia.org/wiki/Gorillas_(video_game))_
