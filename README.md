@@ -4,12 +4,15 @@ All kinds of projects to improve my knowledge, click on the screenshot to go dir
 ## Exploding Monkeys
 _[Gorillas look a like game](https://en.wikipedia.org/wiki/Gorillas_(video_game))_
 
-[![Screenshot Exploding Monkeys](Assets/5-exploding-monkeys.png)](/Exploding%20Monkeys)
+[![Screenshot Exploding Monkeys](Assets/6-exploding-monkeys.png)](/Exploding%20Monkeys)
 
 ## Core Graphics
 
-[![Screenshot Core Graphics](Assets/4-core-graphics.png)](/Core%20Graphics)
+[![Screenshot Core Graphics](Assets/5-core-graphics.png)](/Core%20Graphics)
 
+## Flo Water Counter
+
+[![Screenshot Flo Water Counter](Assets/4-flo.png)](/Flo)
 
 ## Pachinko
 
