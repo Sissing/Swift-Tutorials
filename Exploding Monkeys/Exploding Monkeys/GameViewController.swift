@@ -64,6 +64,8 @@ class GameViewController: UIViewController {
 		if !isHidden {
 			self.angleSlider.value = 45
 			self.velocitySlider.value = 125
+			self.angleChanged(self.angleSlider)
+			self.velocityChanged(self.velocitySlider)
 		}
 		self.angleSlider.isHidden = isHidden
 		self.angleLabel.isHidden = isHidden
