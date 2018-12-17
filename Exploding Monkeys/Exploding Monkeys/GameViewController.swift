@@ -61,6 +61,10 @@ class GameViewController: UIViewController {
 	}
 
 	private func setLayoutStyle(isHidden: Bool) {
+		if !isHidden {
+			self.angleSlider.value = 45
+			self.velocitySlider.value = 125
+		}
 		self.angleSlider.isHidden = isHidden
 		self.angleLabel.isHidden = isHidden
 		self.velocitySlider.isHidden = isHidden
