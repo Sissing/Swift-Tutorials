@@ -13,11 +13,11 @@ class Observable<ObservedType> {
 	var valueChanged: ((ObservedType?) -> ())?
 	var value: ObservedType? {
 		get {
-			_value
+			self._value
 		}
 		set {
-			_value = newValue
-			valueChanged?(_value)
+			self._value = newValue
+			self.valueChanged?(self._value)
 		}
 	}
 
@@ -25,7 +25,7 @@ class Observable<ObservedType> {
 		self._value = value
 	}
 
-	private func bindingChanged(to newValue: ObservedType) {
+	func bindingChanged(to newValue: ObservedType) {
 		self._value = newValue
 		print("Value is now \(newValue)")
 	}

@@ -9,13 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-	@IBOutlet private var userName: UITextField!
+	@IBOutlet private var userNameTextField: BoundTextField!
+
+	private var user = User(name: Observable("Ruben Sissing"))
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+
+		self.userNameTextField.bind(to: self.user.name)
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+			self.user.name.value = "Bilbo Baggins"
+		}
 	}
-
-
 }
-
